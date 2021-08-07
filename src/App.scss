@@ -1,0 +1,20 @@
+$primary : #003A59;
+
+html, body {
+    height: 80vh !important;
+    margin: 0;
+    background: #F4FAFF ;
+  }
+
+.header {
+    color: $primary;
+}
+.App {
+    background: linear-gradient(180deg, #ffffff 50%, #F4FAFF 50%);
+    height:80vh !important;
+  }
+
+//   .list 
+//       &__item {
+//           color: #754311;
+//       }
