@@ -18,6 +18,10 @@ function App() {
   function onSubmit(e) {
     e.preventDefault();
     console.log(title, expiry)
+
+    addListItem(title, expiry);
+    setTitle('')
+    setExpiry('')
   }
 
   const getList = async () => {
@@ -25,9 +29,18 @@ function App() {
     return response.data;
   };
 
-  // const addListItem = async (item) => {
+  const addListItem = async (title, expiry) => {
+    const request = {
+      "title": title,
+      "expiry": expiry
+    };
 
-  // };
+    console.log("request - ", request)
+
+    const response = await axios.post(URL, request);
+    console.log(response);
+    setList([...list, response.data]);
+  };
 
   // const updateListItem = async (item) => {
 
