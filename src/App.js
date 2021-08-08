@@ -44,9 +44,8 @@ function App() {
       // eslint-disable-next-line no-unused-expressions
       return item.title === title
     })
-    console.log(isValid)
 
-    if (isValid < 0) {
+    if (isValid.length <= 0) {
       const response = await axios.post(URL, request);
       console.log(response);
       setList([...list, response.data]);
