@@ -10,8 +10,10 @@ function App() {
 
   const URL = 'https://thefridge-api.karapincha.io/fridge';
 
+  const [id, setId] = useState('');
   const [title, setTitle] = useState('');
   const [expiry, setExpiry] = useState('');
+  const [update, setUpdate] = useState(false)
 
   const [list, setList] = useState([])
 
@@ -19,7 +21,9 @@ function App() {
     e.preventDefault();
     console.log(title, expiry)
 
-    addListItem(title, expiry);
+    // eslint-disable-next-line no-lone-blocks
+    { update ? confirmUpdate(title, expiry, id) : addListItem(title, expiry) }
+
     setTitle('')
     setExpiry('')
   }
@@ -42,13 +46,35 @@ function App() {
     setList([...list, response.data]);
   };
 
-  // const updateListItem = async (item) => {
+  const updateListItem = async (item) => {
 
-  // };
+    setUpdate(true)
+    setId(item._id)
+    setTitle(item.title)
+    setExpiry(item.expiry)
+  };
+
+  const confirmUpdate = async (title, expiry, id) => {
+
+    const request = {
+      "title": title,
+      "expiry": expiry
+    };
+
+    const response = await axios.put(URL + `/${id}`, request);
+    const { _id } = response.data;
+    console.log(_id)
+    setList(
+      list.map((item) => {
+        return item._id === _id ? { ...response.data } : item;
+      })
+    );
+    setUpdate(false)
+  }
 
   const removeListItem = async (id) => {
     console.log(id)
-    await axios.delete(URL+`/${id}`);
+    await axios.delete(URL + `/${id}`);
     const newList = list.filter((item) => {
       return item._id !== id;
     });
@@ -92,15 +118,21 @@ function App() {
                 <input className="Card__input__exp appearance-none block w-full bg-white text-gray-700 border border-gary-500 rounded py-3 px-4 mb-3 leading-tight focus:border-gray-900" id="grid-exp-date" type="date" value={expiry} onChange={e => setExpiry(e.target.value)} />
               </div>
               <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-8">
-                <button className="Card__button w-full bg-blue-900 hover:shadow-xl text-white font-bold py-2 px-12 rounded shadow" type="submit" >
-                  ADD TO FRIDGE
-                </button>
+                {update ?
+                  <button className="Card__button w-full bg-green-900 hover:shadow-xl text-white font-bold py-2 px-12 rounded shadow" type="submit" >
+                    ITEM UPDATE
+                  </button>
+                  :
+                  <button className="Card__button w-full bg-blue-900 hover:shadow-xl text-white font-bold py-2 px-12 rounded shadow" type="submit" >
+                    ADD TO FRIDGE
+                  </button>
+                }
               </div>
               <p className="Card__infor text-gray-500 text-xs px-3">⚠️ We don't want more than one piece of the same food in our fridge.</p>
             </div>
           </form>
 
-          {!list.length ? <Spinner /> : <ListItem data={list} getId={removeListItem} />}
+          {!list.length ? <Spinner /> : <ListItem data={list} getId={removeListItem} updateListItem={updateListItem} />}
 
         </div>
       </div>
