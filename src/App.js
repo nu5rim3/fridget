@@ -48,6 +48,12 @@ function App() {
 
   const removeListItem = async (id) => {
     console.log(id)
+    await axios.delete(URL+`/${id}`);
+    const newList = list.filter((item) => {
+      return item._id !== id;
+    });
+
+    setList(newList);
   };
 
   useEffect(() => {
