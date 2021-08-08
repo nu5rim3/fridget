@@ -40,10 +40,19 @@ function App() {
     };
 
     console.log("request - ", request)
+    var isValid = list.filter((item) => {
+      // eslint-disable-next-line no-unused-expressions
+      return item.title === title
+    })
+    console.log(isValid)
 
-    const response = await axios.post(URL, request);
-    console.log(response);
-    setList([...list, response.data]);
+    if (isValid < 0) {
+      const response = await axios.post(URL, request);
+      console.log(response);
+      setList([...list, response.data]);
+    } else {
+      window.alert(title + ' is already in your fridge')
+    }
   };
 
   const updateListItem = async (item) => {
@@ -119,9 +128,14 @@ function App() {
               </div>
               <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-8">
                 {update ?
-                  <button className="Card__button w-full bg-green-900 hover:shadow-xl text-white font-bold py-2 px-12 rounded shadow" type="submit" >
-                    ITEM UPDATE
-                  </button>
+                  <div>
+                    <button className="Card__button w-full bg-green-900 hover:shadow-xl text-white font-bold py-2 px-12 rounded shadow" type="submit" >
+                      ITEM UPDATE
+                    </button>
+                    <button className="Card__button w-full bg-blue-900 hover:shadow-xl text-white font-bold py-2 px-12 rounded shadow mt-4" onClick={() => setUpdate(false)} >
+                      ADD NEW
+                    </button>
+                  </div>
                   :
                   <button className="Card__button w-full bg-blue-900 hover:shadow-xl text-white font-bold py-2 px-12 rounded shadow" type="submit" >
                     ADD TO FRIDGE
