@@ -15,15 +15,15 @@ const ListItem = (props) => {
             days = end.diff(now, 'days');
         if (days <= 0) {
             return (
-                <div className="List__item--exp col-span-1 font-semibold text-red-500 text-xs bg-red-200 rounded-xl text-center p-1">Expired</div>
+                <div className="List__item__label List__item__label--exp font-semibold text-xs text-center p-1 w-32">Expired</div>
             )
         } else if (days <= 30) {
             return (
-                <div className="List__item--expsoon col-span-1 font-semibold text-yellow-500 text-xs bg-yellow-200 rounded-xl text-center p-1">Expiring soon</div>
+                <div className="List__item__label List__item__label--expsoon font-semibold text-xs text-center p-1 w-32">Expiring soon</div>
             )
         } else {
             return (
-                <div className="List__item--healty col-span-1 font-semibold text-green-500 text-xs bg-green-200 rounded-xl text-center p-1">Healty</div>
+                <div className="List__item__label List__item__label--healthy font-semibold text-xs text-center p-1 w-32">Healthy</div>
             )
         }
 
@@ -31,11 +31,12 @@ const ListItem = (props) => {
 
     const renderList = props.data.map((item) => {
         return (
-            <div className="List__item grid grid-cols-8 gap-4 bg-white border border-gray-300 shadow rounded-md p-4 w-full mx-auto my-2 items-center cursor-pointer" key={item._id} onClick={() => props.updateListItem(item)}>
-                <div className="List__item__name col-span-2 font-semibold">{item.title}</div>
-                <div className="List__item__exp col-span-4 font-semibold text-gray-400 text-xs p-1">Expiry date —  {item.expiry}</div>
+            <div className="List__item grid grid-cols-8 gap-4 bg-white p-4 w-full mx-auto my-3 items-center cursor-pointer" key={item._id} onClick={() => props.updateListItem(item)}>
+                <div className="List__item__name col-span-1 font-semibold capitalize">{item.title}</div>
+                <div className="List__item__exp col-span-4 font-semibold text-xs p-1 sm:col-span-5">Expiry date —  {item.expiry}</div>
+                <div className="col-span-2 sm:col-span-1 flex justify-end">
                 {renderLabel(item.expiry)}
-
+                </div>
                 <div className="col-span-1">
                     <div className="List__item__button flex justify-end">
                         <button
@@ -54,7 +55,7 @@ const ListItem = (props) => {
 
     return (
         <div className="List mt-10">
-            <div className="text-right font-semibold">Total item &#8212; {(props.data.length.toString().length < 2) ? "0" + props.data.length : props.data.length }</div>
+            <div className="List__count text-right font-semibold">Total item &#8212; {(props.data.length.toString().length < 2) ? "0" + props.data.length : props.data.length }</div>
             {renderList}
         </div>
     );
