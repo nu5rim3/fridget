@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 
 const ListItem = (props) => {
-    console.log(props);
+    // console.log(props);
 
     const deleteItemHandler = (id) => {
         props.getId(id);
@@ -33,7 +33,7 @@ const ListItem = (props) => {
         return (
             <div className="List__item grid grid-cols-8 gap-4 bg-white p-4 w-full mx-auto my-3 items-center cursor-pointer" key={item._id} onClick={() => props.updateListItem(item)}>
                 <div className="List__item__name col-span-2 font-semibold capitalize sm:col-span-1">{item.title}</div>
-                <div className="List__item__exp col-span-4 font-semibold text-xs p-1 pr-2 sm:col-span-5">Expiry date —  {item.expiry}</div>
+                <div className="List__item__exp col-span-4 font-semibold text-xs p-1 pr-2 sm:col-span-5">Expiry date —  {moment(item.expiry).format('D/M/YYYY')}</div>
                 <div className="col-span-2 flex justify-end">
                 {renderLabel(item.expiry)}
                     <div className="List__item__button flex justify-end pl-2">

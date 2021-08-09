@@ -51,7 +51,7 @@ function App() {
 
     if (isValid.length <= 0) {
       const response = await axios.post(URL, request);
-      console.log(response);
+      // console.log(response);
       setList([...list, response.data]);
     } else {
       window.alert(title + ' is already in your fridge')
@@ -77,7 +77,7 @@ function App() {
 
     const response = await axios.put(URL + `/${id}`, request);
     const { _id } = response.data;
-    console.log(_id)
+    // console.log(_id)
     setList(
       list.map((item) => {
         return item._id === _id ? { ...response.data } : item;
@@ -89,7 +89,7 @@ function App() {
   }
 
   const removeListItem = async (id) => {
-    console.log(id)
+    // console.log(id)
     await axios.delete(URL + `/${id}`);
     const newList = list.filter((item) => {
       return item._id !== id;
