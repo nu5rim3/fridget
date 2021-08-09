@@ -15,15 +15,15 @@ const ListItem = (props) => {
             days = end.diff(now, 'days');
         if (days <= 0) {
             return (
-                <div className="List__item__label List__item__label--exp font-semibold text-xs text-center p-1 w-32">Expired</div>
+                <div className="List__item__label List__item__label--exp font-semibold text-xs text-center p-1 px-3 w-32">Expired</div>
             )
         } else if (days <= 30) {
             return (
-                <div className="List__item__label List__item__label--expsoon font-semibold text-xs text-center p-1 w-32">Expiring soon</div>
+                <div className="List__item__label List__item__label--expsoon font-semibold text-xs text-center p-1 px-3 w-32">Expiring soon</div>
             )
         } else {
             return (
-                <div className="List__item__label List__item__label--healthy font-semibold text-xs text-center p-1 w-32">Healthy</div>
+                <div className="List__item__label List__item__label--healthy font-semibold text-xs text-center p-1 px-3 w-32">Healthy</div>
             )
         }
 
@@ -33,12 +33,10 @@ const ListItem = (props) => {
         return (
             <div className="List__item grid grid-cols-8 gap-4 bg-white p-4 w-full mx-auto my-3 items-center cursor-pointer" key={item._id} onClick={() => props.updateListItem(item)}>
                 <div className="List__item__name col-span-2 font-semibold capitalize sm:col-span-1">{item.title}</div>
-                <div className="List__item__exp col-span-3 font-semibold text-xs p-1 sm:col-span-5">Expiry date —  {item.expiry}</div>
-                <div className="col-span-2 sm:col-span-1 flex justify-end">
+                <div className="List__item__exp col-span-4 font-semibold text-xs p-1 pr-2 sm:col-span-5">Expiry date —  {item.expiry}</div>
+                <div className="col-span-2 flex justify-end">
                 {renderLabel(item.expiry)}
-                </div>
-                <div className="col-span-1">
-                    <div className="List__item__button flex justify-end">
+                    <div className="List__item__button flex justify-end pl-2">
                         <button
                             onClick={(e) => window.confirm(`Do you want to remove ${item.title} ?`) && deleteItemHandler(item._id)}
                         >
