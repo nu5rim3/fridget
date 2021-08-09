@@ -17,6 +17,11 @@ function App() {
 
   const [list, setList] = useState([])
 
+  function clearForm() {
+    setTitle('')
+    setExpiry('')
+  }
+
   function onSubmit(e) {
     e.preventDefault();
     console.log(title, expiry)
@@ -24,8 +29,7 @@ function App() {
     // eslint-disable-next-line no-lone-blocks
     { update ? confirmUpdate(title, expiry, id) : addListItem(title, expiry) }
 
-    setTitle('')
-    setExpiry('')
+    clearForm()
   }
 
   const getList = async () => {
@@ -52,6 +56,8 @@ function App() {
     } else {
       window.alert(title + ' is already in your fridge')
     }
+
+    clearForm()
   };
 
   const updateListItem = async (item) => {
@@ -78,6 +84,8 @@ function App() {
       })
     );
     setUpdate(false)
+
+    clearForm()
   }
 
   const removeListItem = async (id) => {
@@ -88,6 +96,8 @@ function App() {
     });
 
     setList(newList);
+
+    clearForm()
   };
 
   useEffect(() => {
@@ -131,7 +141,10 @@ function App() {
                     <button className="Card__button Card__button--secondary w-full hover:shadow-xl text-white font-bold py-3 px-12 rounded shadow" type="submit" >
                       ITEM UPDATE
                     </button>
-                    <button className="Card__button Card__button--primary w-full hover:shadow-xl text-white font-bold py-3 px-12 rounded shadow mt-4" onClick={() => setUpdate(false)} >
+                    <button className="Card__button Card__button--primary w-full hover:shadow-xl text-white font-bold py-3 px-12 rounded shadow mt-4" onClick={() => {
+                      setUpdate(false)
+                      clearForm()
+                    }} >
                       ADD NEW
                     </button>
                   </div>
