@@ -1,5 +1,5 @@
 import React from "react";
-import logo from './img/logo.png';
+// import logo from './img/logo.png';
 import './App.scss';
 import Spinner from './components/spinner';
 import ListItem from './components/ListItem';
