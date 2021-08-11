@@ -111,50 +111,51 @@ function App() {
 
   return (
     <div className="App">
+      <div className="Header">
+        <div className="Header__title font-extrabold text-4xl text-center">Good morning, Johny!</div>
+        <div className="Header__subtitle font-medium text-sm text-center">🌤 It's better to go shopping before this friday</div>
+      </div>
       <div className="grid grid-cols-12 gap-4">
-        <div className="col-start-2 col-span-10">
-          <div className="Header">
-            <div className="Header__image__div flex justify-center pt-10 mt-5">
-              <img src={logo} alt="logo" className="Header__main--image h-1/3 w-36" />
-            </div>
+        <div className="col-start-3 col-span-8">
 
-            <div className="Header__title font-extrabold text-4xl text-center pt-12">Good morning, Johny!</div>
-            <div className="Header__subtitle font-medium text-sm text-gray-400 text-center pt-3 pb-10">🌤 It's better to go shopping before this friday</div>
-          </div>
-          <form className="Card w-full bg-white px-5 py-10" onSubmit={onSubmit}>
-            <div className="flex flex-wrap -mx-3 mb-6">
-              <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                <label className="Card__input__label Card__input__label--name block tracking-wide font-semibold mb-2 text-sm capitalize" htmlFor="grid-item-title">
+          <form className="Card w-full bg-white" onSubmit={onSubmit}>
+            <div className="flex flex-wrap justify-center">
+              <div className="Card__item w-full md:w-1/3">
+                <label className="Card__item__input__label Card__item__input__label--name block tracking-wide font-semibold text-sm capitalize" htmlFor="grid-item-title">
                   🍉 Item Name
                 </label>
-                <input className="Card__input Card__input--name appearance-none block w-full py-3 px-4 mb-3 leading-tight focus:border-gary-900" id="grid-item-title" type="text" value={title} onChange={e => setTitle(e.target.value)} />
+                <input className="Card__item__input Card__item__input--name appearance-none block w-full leading-tight focus:border-gray-900" id="grid-item-title" type="text" value={title} onChange={e => setTitle(e.target.value)} />
               </div>
-              <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                <label className="Card__input__label Card__input__label--exp block tracking-wide  font-semibold mb-2 text-sm capitalize" htmlFor="grid-exp-date">
+              <div className="Card__item w-full md:w-1/3">
+                <label className="Card__item__input__label Card__item__input__label--exp block tracking-wide  font-semibold text-sm capitalize" htmlFor="grid-exp-date">
                   ⏰ Expiry Date
                 </label>
-                <input className="Card__input Card__input--exp appearance-none block w-full py-3 px-4 mb-3 leading-tight focus:border-gray-900" id="grid-exp-date" type="date" value={expiry} onChange={e => setExpiry(e.target.value)} />
+                <input className="Card__item__input Card__item__input--exp appearance-none block w-full leading-tight focus:border-gray-900" id="grid-exp-date" type="date" value={expiry} onChange={e => setExpiry(e.target.value)} />
               </div>
-              <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0 py-8">
+              <div className="flex flex-wrap content-end justify-end">
                 {update ?
-                  <div>
-                    <button className="Card__button Card__button--secondary w-full hover:shadow-xl text-white font-bold py-3 px-12 rounded shadow" type="submit" >
-                      ITEM UPDATE
+                  <div className="flex">
+                    <button className="Card__button Card__button--secondary hover:shadow-xl text-white font-bold text-sm" type="submit" >
+                      UPDATE
                     </button>
-                    <button className="Card__button Card__button--primary w-full hover:shadow-xl text-white font-bold py-3 px-12 rounded shadow mt-4" onClick={() => {
+                    <button className="Card__button Card__button__cancel hover:shadow-xl bg-red-700 justify-center" onClick={() => {
                       setUpdate(false)
                       clearForm()
                     }} >
-                      ADD NEW
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
                     </button>
                   </div>
                   :
-                  <button className="Card__button Card__button--primary w-full hover:shadow-xl text-white font-bold py-3 px-12 rounded shadow" type="submit" >
+                  <button className="Card__button Card__button--primary hover:shadow-xl text-white font-bold text-sm" type="submit" >
                     ADD TO FRIDGE
                   </button>
                 }
               </div>
-              <p className="Card__infor capitalize text-xs px-3">⚠️ We don't want more than one piece of the same food in our fridge.</p>
+            </div>
+            <div className="flex justify-start">
+              <div className="Card__infor capitalize text-xs">⚠️ We don't want more than one piece of the same food in our fridge.</div>
             </div>
           </form>
 

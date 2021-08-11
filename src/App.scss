@@ -11,44 +11,78 @@ body {
 
 .App {
   background: linear-gradient(180deg, #ffffff 50%, #F4FAFF 50%);
-  height: 80vh !important;
+  height: 70vh !important;
 }
 
-.Header__title {
-  color: $blue-400;
+.Header {
+  // position: absolute;
+  padding-top: 90px;
+  padding-bottom: 70px;
+
+  &__title {
+    height: 44px;
+    color: $blue-400;
+    line-height: 44px;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+  }
+
+
+  &__subtitle {
+    height: 22px;
+    color: #728197;
+    line-height: 22px;
+    letter-spacing: -0.03em;
+  }
 }
 
-.Header__subtitle {
-  color: #728197;
-}
+
+
 
 .Card {
   background: #FFFFFF;
   border: 1px solid #E3E9F1;
   box-sizing: border-box;
   border-radius: 8px;
+  padding: 40px 40px 42px 40px;
+  margin-bottom: 20px;
 
-  &__input {
-    background: #FFFFFF;
-    border: 2px solid #CCD6E1;
-    box-sizing: border-box;
-    border-radius: 4px;
-
-    &:focus {
-      border: 2px solid $blue-300;
-    }
+  &__item {
+    margin-right: 22px;
 
     &__label {
       color: #2E3849;
+      line-height: 17px;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+
+    &__input {
+      height: 40px;
+      background: #FFFFFF;
+      border: 2px solid #CCD6E1;
+      box-sizing: border-box;
+      border-radius: 4px;
+      padding: 0 10px 0 10px;
+
+      &:focus {
+        border: 2px solid $blue-300;
+      }
+
     }
   }
 
-  &__infor {
-    color: #728197;
-  }
-
   &__button {
+    // width: 230px;
+    padding: 12px 64px 12px 65px;
+    height: 40px;
     border-radius: 4px;
+
+    &__cancel {
+      margin-left: 12px;
+      padding: 0px 8px 0px 8px;
+      width: 40px;
+    }
 
     &--primary {
       background: $blue-300;
@@ -58,12 +92,19 @@ body {
       background: $green-300;
     }
   }
+
+  &__infor {
+    margin-top: 12px;
+    line-height: 15px;
+    color: #728197;
+  }
 }
 
 .List {
 
   &__count {
     color: #2E3849;
+    margin-bottom: 16px;
   }
 
   &__item {
@@ -73,10 +114,14 @@ body {
     border-radius: 4px;
 
     &__name {
+      line-height: 19px;
+      letter-spacing: -0.03em;
       color: #2E3849;
     }
 
     &__exp {
+      line-height: 15px;
+      letter-spacing: -0.03em;
       color: #728197;
     }
 

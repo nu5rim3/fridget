@@ -52,7 +52,7 @@ const ListItem = (props) => {
 
 
     return (
-        <div className="List mt-10">
+        <div className="List">
             <div className="List__count text-right font-semibold">Total items &#8212; {(props.data.length.toString().length < 2) ? "0" + props.data.length : props.data.length }</div>
             {renderList}
         </div>
